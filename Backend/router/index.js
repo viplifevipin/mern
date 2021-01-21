@@ -1,32 +1,43 @@
-const express = require('express');
+const express = require ('express');
 const router = express.Router();
-var dbConfiq = require('../database/db')
 
-router.get('/todos', (req, res, next) => {
-    dbConfiq.get().collection('todo').find({}).toArray(function (err, doc) {
-        if (err) {
-            console.log('err', err)
+var Todo=require('../model/todo')
+
+router.get('/todos',async(req,res,next)=>{
+   await Todo.find((err,docs)=>{
+       if(err){
+           console.log("err",err)
+       }
+       else{
+           res.json(docs)
+       }
+   })
+})
+
+
+router.get('/:id',(req,res)=>{
+    let id=req.params.id
+
+    Todo.findById((err,docs)=>{
+        if(err){
+            console.log("err",err)
         }
-        else {
-            res.json(doc)
-            console.log(doc)
+        else{
+            res.json(docs)
         }
     })
+})
 
-});
-
-router.post('/add', (req, res, next) => {
-
-    const data={
-        todo_description: req.body.todo_description,
-        todo_responsible:req.body.todo_responsible,
-        todo_priority :req.body.todo_priority,
-        todo_completed :req.body.todo_completed
-    }
-
-    dbConfiq.get().collection('todo').insertMany([{
-       data
-    }])
+router.post('/to', (req, res, next) => {
+    let todo= new Todo(req.body)
+    todo.save((err,todo)=>{
+if (err){
+    res.json(err)
+}
+else{
+    res.json(todo)
+}
+    })      
 });
 
 module.exports = router;
