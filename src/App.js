@@ -8,20 +8,21 @@ import CreateTodo from "./components/create"
 class App extends Component {
   render() {
     return (
-        <Router>
+  
           <div>
-          <nav class="navbar navbar-expand-lg navbar-light bg-dark" style={{marginTop: 10}}>
-  <a class="navbar-brand " href="/"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+                  <Router>
+          <nav className="navbar navbar-expand-lg navbar-light bg-dark" style={{marginTop: 10}}>
+  <a className="navbar-brand " href="/"></a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ">
-    <li class="nav-item active ">
-        <a class="nav-link text-light" style={{fontFamily:"sans-serif"}} href="/">Todos<span class="sr-only">(current)</span></a>
+  <div className="collapse navbar-collapse" id="navbarNav">
+    <ul className="navbar-nav ">
+    <li className="nav-item active ">
+        <a className="nav-link text-light" style={{fontFamily:"sans-serif"}} href="/">Todos<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link text-light" href="/create"> create Todo<span class="sr-only">(current)</span></a>
+      <li className="nav-item active">
+        <a className="nav-link text-light" href="/create"> create Todo<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
@@ -29,7 +30,8 @@ class App extends Component {
         <Route path="/" exact component={TodoList}/>
         <Route path="/edit/:id" exact component={EditTodo}/>
         <Route path="/create" exact component={CreateTodo}/>
-        </div></Router>
+        </Router>
+        </div>
     );
   }
 }

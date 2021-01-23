@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
+let path = require('path');
 const cors = require('cors');
 const app = express()
 // var db=require('./database/db')
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/public/')));
 
 var todoRoutes=require('./router/index')
 mongoose.connect('mongodb://localhost:27017/do',{ useNewUrlParser: true,useUnifiedTopology: true },(err)=>{
